@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Insomnia</title>
+</head>
+<body>
+
+  <div class="auth-bar">
+
+    <button id="toggleLogin" class="auth-btn">
+      Login
+    </button>
+
+    <div class="nav-logo">
+      <img src="Képek/LOGO.png" alt="LOGO">
+    </div>
+
+    <button id="toggleRegister" class="auth-btn">
+      Register
+    </button>
+
+    <div id="loginMenu" class="dropdown hidden">
+      <h3>Login</h3>
+      <input id="logUser" placeholder="username" />
+      <input id="logPass" placeholder="password" type="password" />
+      <button id="btnLogin">Bejelentkezés</button>
+    </div>
+
+    <div id="registerMenu" class="dropdown hidden">
+      <h3>Register</h3>
+      <input id="regUser" placeholder="username" />
+      <input id="regPass" placeholder="password (min 6)" type="password" />
+      <button id="btnRegister">Regisztráció</button>
+    </div>
+
+  </div>
+
+  <div class="container">
+    <div class="topbar">
+      <div></div>
+      <div class="muted">API: <code>/api</code></div>
+    </div>
+
+
+    <div class="card">
+      <input id="rating" type="number" min="1" max="5" />
+      <textarea id="reviewMessage"></textarea>
+      <button id="btnSendReview">Review küldése</button>
+      <pre id="reviewMsg"></pre>
+    </div>
+
+    <div class="card">
+      <input id="reportTitle" />
+      <textarea id="reportMessage"></textarea>
+      <button id="btnSendReport">Report küldése</button>
+      <pre id="reportMsg"></pre>
+    </div>
+
+    <div class="card">
+      <button id="btnRefresh">⟳</button>
+      <div id="reviews"></div>
+    </div>
+
+        <div class="card">
+      <p class="muted">Token: <span id="tokenStatus">nincs</span></p>
+      <button id="btnLogout">Kijelentkezés</button>
+      <pre id="authMsg"></pre>
+    </div>
+
+  </div>
+
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

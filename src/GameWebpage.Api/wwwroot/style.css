@@ -1,0 +1,169 @@
+﻿/* RESET */
+body {
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+}
+
+/* NAVBAR */
+.auth-bar {
+    position: relative;
+    width: 100%;
+    height: 90px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(0, 38, 0, 0.2);
+    padding: 0 20px;
+    box-sizing: border-box;
+    border: 1px rgba(0, 38, 0, 0.2) dotted;
+    border-radius: 5px;
+}
+
+/* LOGO */
+.nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-logo img {
+    height: 60px;
+    transition: filter 0.6s ease, transform 0.3s ease;
+}
+
+/* 🔥 LOGO GLOW */
+.nav-logo img:hover {
+    filter: 
+        drop-shadow(0 0 10px rgba(255, 0, 0, 0.6))
+        drop-shadow(0 0 20px rgba(255, 0, 0, 0.6))
+        drop-shadow(0 0 35px rgba(255, 0, 0, 0.5));
+    
+    transform: scale(1.05);
+}
+
+/* GOMBOK */
+.auth-btn {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 13px;
+ font-weight: 500;
+ text-transform: uppercase;
+ letter-spacing: 0.4px;
+ color: #7e97b8;
+ background-color: #e0e8ef;
+ border: 2px solid rgba(255, 255, 255, 0.333);
+ border-radius: 40px;
+ padding: 14px 22px;
+ transition: 0.2s;
+ box-shadow: -4px -2px 16px #ffffff,
+             4px 2px 16px rgba(95,157,231,0.48);
+}
+
+.auth-btn:hover {
+ color: #516d91;
+ background-color: #E5EDF5;
+ box-shadow: -2px -1px 8px #ffffff,
+             2px 1px 8px rgba(95,157,231,0.48);
+}
+
+/* 🔥 ZÖLD ÁTTETSZŐ DROPDOWN */
+.dropdown {
+    position: absolute;
+    top: 90px;
+    width: 220px;
+
+    /* 🔥 EZ A LÉNYEG */
+    background: rgba(0, 100, 0, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(0, 255, 100, 0.3);
+    border-radius: 12px;
+    padding: 12px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* inputok a dropdownban */
+.dropdown input {
+    background: rgba(255,255,255,0.8);
+    border: none;
+}
+
+/* gombok a dropdownban */
+.dropdown button {
+    background: rgba(255,255,255,0.9);
+}
+
+/* pozíciók */
+#loginMenu { left: 20px; }
+#registerMenu { right: 20px; }
+
+.hidden { display: none; }
+
+/* KONTÉNER */
+.container {
+    max-width: 920px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+/* UI */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+    background: rgba(255,255,255,0.85);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+/* nem navbar gombok */
+button:not(.auth-btn) {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    background: #eee;
+    border: 1px solid #ccc;
+}
+
+button {
+    cursor: pointer;
+}
+
+.muted {
+    color: #666;
+    font-size: 14px;
+}
+
+.reviews {
+    display: grid;
+    gap: 10px;
+}
+
+.review {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+code {
+    background: #f6f6f6;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
