@@ -2,7 +2,7 @@
 
 const tokenKey = "gw_token";
 
-/* 🔥 HÁTTÉR LISTA */
+
 const backgrounds = [
     "Képek/hatter.png",
     "Képek/hatter2.png"
@@ -10,13 +10,13 @@ const backgrounds = [
 
 let currentBgIndex = 0;
 
-/* 🔥 RANDOM INDULÁS */
+
 function setRandomBackground() {
     currentBgIndex = Math.floor(Math.random() * backgrounds.length);
     applyBackground(backgrounds[currentBgIndex]);
 }
 
-/* 🔥 HÁTTÉR ALKALMAZÁS */
+
 function applyBackground(bg) {
     document.body.style.backgroundImage = `url('${bg}')`;
     document.body.style.backgroundSize = "cover";
@@ -27,7 +27,7 @@ function applyBackground(bg) {
     document.body.style.backgroundBlendMode = "darken";
 }
 
-/* 🔥 AUTOMATIKUS VÁLTÁS 40s */
+
 function startBackgroundRotation() {
     setInterval(() => {
         currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
@@ -35,7 +35,7 @@ function startBackgroundRotation() {
     }, 40000); // 40 másodperc
 }
 
-/* TOKEN */
+
 function getToken() {
     return localStorage.getItem(tokenKey);
 }
@@ -54,7 +54,7 @@ function renderTokenStatus() {
     el.textContent = t ? "van (localStorage)" : "nincs";
 }
 
-/* API */
+
 async function api(path, options = {}) {
     const headers = new Headers(options.headers || {});
     headers.set("Content-Type", "application/json");
@@ -74,7 +74,7 @@ async function api(path, options = {}) {
     return data;
 }
 
-/* HELPERS */
+
 function qs(id) {
     return document.getElementById(id);
 }
@@ -93,7 +93,7 @@ function escapeHtml(s) {
     }[c]));
 }
 
-/* REVIEWS */
+
 async function refreshReviews() {
     const container = qs("reviews");
     container.innerHTML = "Töltés...";
@@ -125,7 +125,7 @@ async function refreshReviews() {
     }
 }
 
-/* 🔥 SLIDESHOW */
+
 function startSlideshow() {
     const slides = document.querySelectorAll(".slide");
     let index = 0;
@@ -142,7 +142,7 @@ function startSlideshow() {
     }, 4000);
 }
 
-/* UI */
+
 function wireUi() {
 
     /* 🔥 HÁTTÉR */

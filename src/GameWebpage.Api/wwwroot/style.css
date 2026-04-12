@@ -1,4 +1,4 @@
-﻿/* RESET */
+﻿
 body {
   margin: 0;
   font-family: system-ui, Arial, sans-serif;
@@ -7,7 +7,7 @@ body {
            
 }
 
-/* NAVBAR */
+
 .auth-bar {
   position: relative;
   width: 100%;
@@ -24,7 +24,7 @@ body {
   border-radius: 5px;
 }
 
-/* LOGO */
+
 .nav-logo {
   position: absolute;
   left: 50%;
@@ -38,7 +38,7 @@ body {
     transform 0.3s ease;
 }
 
-/* 🔥 LOGO GLOW */
+
 .nav-logo img:hover {
   filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.6))
     drop-shadow(0 0 20px rgba(255, 0, 0, 0.6))
@@ -47,7 +47,7 @@ body {
   transform: scale(1.05);
 }
 
-/* GOMBOK */
+
 .auth-btn {
   display: flex;
   align-items: center;
@@ -75,7 +75,7 @@ body {
     2px 1px 8px rgba(95, 157, 231, 0.48);
 }
 
-/* 🔥 ZÖLD ÁTTETSZŐ DROPDOWN */
+
 .dropdown {
   position: absolute;
   top: 90px;
@@ -93,18 +93,18 @@ body {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* inputok a dropdownban */
+
 .dropdown input {
   background: rgba(255, 255, 255, 0.8);
   border: none;
 }
 
-/* gombok a dropdownban */
+
 .dropdown button {
   background: rgba(255, 255, 255, 0.9);
 }
 
-/* pozíciók */
+
 #loginMenu {
   left: 20px;
 }
@@ -116,14 +116,14 @@ body {
   display: none;
 }
 
-/* KONTÉNER */
+
 .container {
   max-width: 920px;
   margin: 24px auto;
   padding: 0 16px;
 }
 
-/* UI */
+
 .card {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 12px;
@@ -140,7 +140,7 @@ textarea {
   box-sizing: border-box;
 }
 
-/* nem navbar gombok */
+
 button:not(.auth-btn):not(.download-button) {
   width: 100%;
   padding: 10px;
@@ -255,7 +255,7 @@ text-align: center;
   margin-top: 8px;
   box-sizing: border-box;
 
-  /* 🔥 ÚJ STÍLUS */
+ 
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
 
@@ -265,13 +265,13 @@ text-align: center;
   backdrop-filter: blur(4px);
 }
 
-/* placeholder szín */
+
 .card input::placeholder,
 .card textarea::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* fókusz (amikor beleklikkelsz) */
+
 .card input:focus,
 .card textarea:focus {
   outline: none;
@@ -299,7 +299,7 @@ text-align: center;
     margin-left: 400px;
 }
 
-/* 🔥 SIMA GOMBOK (nem fancy gombok) */
+
 button:not(.auth-btn):not(.download-button):not(.sima) {
   width: 100%;
   padding: 10px;
@@ -317,7 +317,7 @@ button:not(.auth-btn):not(.download-button):not(.sima) {
   transition: all 0.25s ease;
 }
 
-/* 🔥 HOVER GLOW */
+
 button:not(.auth-btn):not(.download-button):not(.sima):hover {
   background: rgba(255, 255, 255, 0.25);
 
@@ -328,13 +328,13 @@ button:not(.auth-btn):not(.download-button):not(.sima):hover {
   transform: translateY(-1px);
 }
 
-/* 🔥 KATTINTÁS */
+
 button:not(.auth-btn):not(.download-button):not(.sima):active {
   transform: scale(0.97);
   box-shadow: none;
 }
 
-/* 🔥 SLIDESHOW */
+
 .slideshow {
   margin-top: 25px;
   width: 100%;
@@ -352,7 +352,7 @@ button:not(.auth-btn):not(.download-button):not(.sima):active {
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
 
-/* képek */
+
 .slide {
   position: absolute;
   width: 100%;
@@ -364,12 +364,12 @@ button:not(.auth-btn):not(.download-button):not(.sima):active {
   transition: opacity 1s ease-in-out;
 }
 
-/* aktív */
+
 .slide.active {
   opacity: 1;
 }
 
-/* 🔥 FIX DOWNLOAD BUTTON KÖZÉPRE */
+
 .download-button {
   display: block;
   width: fit-content;
