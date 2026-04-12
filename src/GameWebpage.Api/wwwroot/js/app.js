@@ -2,24 +2,37 @@
 
 const tokenKey = "gw_token";
 
-/* 🔥 RANDOM HÁTTÉR */
+/* 🔥 HÁTTÉR LISTA */
+const backgrounds = [
+    "Képek/hatter.png",
+    "Képek/hatter2.png"
+];
+
+let currentBgIndex = 0;
+
+/* 🔥 RANDOM INDULÁS */
 function setRandomBackground() {
-    const backgrounds = [
-        "Képek/hatter.png",
-        "Képek/hatter2.png"
-    ];
+    currentBgIndex = Math.floor(Math.random() * backgrounds.length);
+    applyBackground(backgrounds[currentBgIndex]);
+}
 
-    const random = Math.floor(Math.random() * backgrounds.length);
-    const selected = backgrounds[random];
-
-    document.body.style.backgroundImage = `url('${selected}')`;
+/* 🔥 HÁTTÉR ALKALMAZÁS */
+function applyBackground(bg) {
+    document.body.style.backgroundImage = `url('${bg}')`;
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
     document.body.style.backgroundRepeat = "no-repeat";
 
-    // opcionális sötétítés (szebb UI)
     document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
     document.body.style.backgroundBlendMode = "darken";
+}
+
+/* 🔥 AUTOMATIKUS VÁLTÁS 40s */
+function startBackgroundRotation() {
+    setInterval(() => {
+        currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
+        applyBackground(backgrounds[currentBgIndex]);
+    }, 40000); // 40 másodperc
 }
 
 /* TOKEN */
@@ -112,11 +125,31 @@ async function refreshReviews() {
     }
 }
 
+/* 🔥 SLIDESHOW */
+function startSlideshow() {
+    const slides = document.querySelectorAll(".slide");
+    let index = 0;
+
+    setInterval(() => {
+        slides[index].classList.remove("active");
+
+        index++;
+        if (index >= slides.length) {
+            index = 0; // 🔥 újraindul
+        }
+
+        slides[index].classList.add("active");
+    }, 4000);
+}
+
 /* UI */
 function wireUi() {
 
-    /* 🔥 RANDOM HÁTTÉR BETÖLTÉS */
+    /* 🔥 HÁTTÉR */
     setRandomBackground();
+    startBackgroundRotation();
+
+    startSlideshow();
 
     renderTokenStatus();
 
@@ -150,7 +183,6 @@ function wireUi() {
         }
     });
 
-    /* AUTH */
     qs("btnRegister").addEventListener("click", async () => {
         try {
             await api("/api/auth/register", {
@@ -188,7 +220,6 @@ function wireUi() {
         setMsg("authMsg", "Kijelentkezve");
     });
 
-    /* REVIEW */
     qs("btnSendReview").addEventListener("click", async () => {
         try {
             await api("/api/reviews", {
@@ -206,7 +237,6 @@ function wireUi() {
         }
     });
 
-    /* REPORT */
     qs("btnSendReport").addEventListener("click", async () => {
         try {
             await api("/api/reports", {

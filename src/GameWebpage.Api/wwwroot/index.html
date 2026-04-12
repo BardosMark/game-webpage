@@ -1,78 +1,81 @@
 <!doctype html>
 <html lang="hu">
-<head>
+  <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="img" href="Képek/Icon.png">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Insomnia</title>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="auth-bar">
+      <button id="toggleLogin" class="auth-btn">Login</button>
 
-  <div class="auth-bar">
+      <div class="nav-logo">
+        <img src="Képek/LOGO.png" alt="LOGO" />
+      </div>
 
-    <button id="toggleLogin" class="auth-btn">
-      Login
-    </button>
+      <button id="toggleRegister" class="auth-btn">Register</button>
 
-    <div class="nav-logo">
-      <img src="Képek/LOGO.png" alt="LOGO">
+      <div id="loginMenu" class="dropdown hidden">
+        <h3>Login</h3>
+        <input id="logUser" placeholder="username" />
+        <input id="logPass" placeholder="password" type="password" />
+        <button id="btnLogin">Bejelentkezés</button>
+      </div>
+
+      <div id="registerMenu" class="dropdown hidden">
+        <h3>Register</h3>
+        <input id="regUser" placeholder="username" />
+        <input id="regPass" placeholder="password (min 6)" type="password" />
+        <button id="btnRegister">Regisztráció</button>
+      </div>
     </div>
 
-    <button id="toggleRegister" class="auth-btn">
-      Register
-    </button>
+    <div class="container">
+      <div class="card">
+        <h1>Üdvözlünk az Insomnia Alpha tesztjén!</h1>
+        <h2>
+          Az Insomnia egy ingyenes rpg játék pc-re ami felidézi a régi 2D
+          pixelart rpg-k világát mégis valami újjat ad játékosainak. A játék
+          lényege, más open world rpg-khez hasonlóan az, hogy felfedezd a pályát
+          kedved szerint, erősödj, szintet lépj, harcolj, gyűjtögess és közben
+          megismerkedj a játék történetével. A játék jelenleg alpha verzióban
+          van, ezért minden vélemény és bug bejelentése segítik, hogy egy nap amikor a játék
+          végleges verziója megjelenik, egy olyan játékélményben lehessen része
+          a játékosoknak ami bugoktól mentes és örök emlék marad. Légy te is egy
+          a tesztelők közül! Töltsd le a játékot most, és játsz ingyen!
+        </h2>
+        <button class="download-button">Letöltés↓📂</button>
+          <div class="slideshow">
+            <img src="Képek/Kep1.png" class="slide active">
+            <img src="Képek/Kep2.png" class="slide">
+            <img src="Képek/Kep3.png" class="slide">
+            <img src="Képek/Kep4.png" class="slide">
+            <img src="Képek/Kep5.png" class="slide">
+          </div>
+        </button>
+        <h1>Értékeld a játékot!</h1>
+        <input placeholder="1-5★" id="rating" type="number" min="1" max="5" />
+        <textarea placeholder="Írd le a véleményed!" id="reviewMessage"></textarea>
+        <button id="btnSendReview" >Review küldése</button>
+        <pre id="reviewMsg"></pre>
 
-    <div id="loginMenu" class="dropdown hidden">
-      <h3>Login</h3>
-      <input id="logUser" placeholder="username" />
-      <input id="logPass" placeholder="password" type="password" />
-      <button id="btnLogin">Bejelentkezés</button>
+        <h1>Talkálkoztál bugokkal?</h1>
+        <input placeholder="Bug neve" id="reportTitle" />
+        <textarea placeholder="Írd le mi történt pontosan!" id="reportMessage"></textarea>
+        <button id="btnSendReport" >Report küldése</button>
+        <pre id="reportMsg"></pre>
+
+        <button id="btnRefresh">⟳</button>
+        <div id="reviews"></div>
+
+        <p class="muted">Token: <span id="tokenStatus">nincs</span></p>
+        <button id="btnLogout">Kijelentkezés</button>
+        <pre id="authMsg"></pre>
+      </div>
     </div>
 
-    <div id="registerMenu" class="dropdown hidden">
-      <h3>Register</h3>
-      <input id="regUser" placeholder="username" />
-      <input id="regPass" placeholder="password (min 6)" type="password" />
-      <button id="btnRegister">Regisztráció</button>
-    </div>
-
-  </div>
-
-  <div class="container">
-    <div class="topbar">
-      <div></div>
-      <div class="muted">API: <code>/api</code></div>
-    </div>
-
-
-    <div class="card">
-      <input id="rating" type="number" min="1" max="5" />
-      <textarea id="reviewMessage"></textarea>
-      <button id="btnSendReview">Review küldése</button>
-      <pre id="reviewMsg"></pre>
-    </div>
-
-    <div class="card">
-      <input id="reportTitle" />
-      <textarea id="reportMessage"></textarea>
-      <button id="btnSendReport">Report küldése</button>
-      <pre id="reportMsg"></pre>
-    </div>
-
-    <div class="card">
-      <button id="btnRefresh">⟳</button>
-      <div id="reviews"></div>
-    </div>
-
-        <div class="card">
-      <p class="muted">Token: <span id="tokenStatus">nincs</span></p>
-      <button id="btnLogout">Kijelentkezés</button>
-      <pre id="authMsg"></pre>
-    </div>
-
-  </div>
-
-
-  <script src="/js/app.js"></script>
-</body>
+    <script src="/js/app.js"></script>
+  </body>
 </html>

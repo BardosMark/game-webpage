@@ -1,169 +1,377 @@
 ﻿/* RESET */
 body {
-    margin: 0;
-    font-family: system-ui, Arial, sans-serif;
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+  transition: background-image 1.5s ease-in-out,
+              background-color 1.5s ease-in-out;
+           
 }
 
 /* NAVBAR */
 .auth-bar {
-    position: relative;
-    width: 100%;
-    height: 90px;
+  position: relative;
+  width: 100%;
+  height: 90px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    background: rgba(0, 38, 0, 0.2);
-    padding: 0 20px;
-    box-sizing: border-box;
-    border: 1px rgba(0, 38, 0, 0.2) dotted;
-    border-radius: 5px;
+  background: rgba(0, 38, 0, 0.2);
+  padding: 0 20px;
+  box-sizing: border-box;
+  border: 1px rgba(0, 38, 0, 0.2) dotted;
+  border-radius: 5px;
 }
 
 /* LOGO */
 .nav-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav-logo img {
-    height: 60px;
-    transition: filter 0.6s ease, transform 0.3s ease;
+  height: 60px;
+  transition:
+    filter 0.6s ease,
+    transform 0.3s ease;
 }
 
 /* 🔥 LOGO GLOW */
 .nav-logo img:hover {
-    filter: 
-        drop-shadow(0 0 10px rgba(255, 0, 0, 0.6))
-        drop-shadow(0 0 20px rgba(255, 0, 0, 0.6))
-        drop-shadow(0 0 35px rgba(255, 0, 0, 0.5));
-    
-    transform: scale(1.05);
+  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.6))
+    drop-shadow(0 0 20px rgba(255, 0, 0, 0.6))
+    drop-shadow(0 0 35px rgba(255, 0, 0, 0.5));
+
+  transform: scale(1.05);
 }
 
 /* GOMBOK */
 .auth-btn {
- display: flex;
- align-items: center;
- justify-content: center;
- font-size: 13px;
- font-weight: 500;
- text-transform: uppercase;
- letter-spacing: 0.4px;
- color: #7e97b8;
- background-color: #e0e8ef;
- border: 2px solid rgba(255, 255, 255, 0.333);
- border-radius: 40px;
- padding: 14px 22px;
- transition: 0.2s;
- box-shadow: -4px -2px 16px #ffffff,
-             4px 2px 16px rgba(95,157,231,0.48);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #7e97b8;
+  background-color: #e0e8ef;
+  border: 2px solid rgba(255, 255, 255, 0.333);
+  border-radius: 40px;
+  padding: 14px 22px;
+  transition: 0.2s;
+  box-shadow:
+    -4px -2px 16px #ffffff,
+    4px 2px 16px rgba(95, 157, 231, 0.48);
 }
 
 .auth-btn:hover {
- color: #516d91;
- background-color: #E5EDF5;
- box-shadow: -2px -1px 8px #ffffff,
-             2px 1px 8px rgba(95,157,231,0.48);
+  color: #516d91;
+  background-color: #e5edf5;
+  box-shadow:
+    -2px -1px 8px #ffffff,
+    2px 1px 8px rgba(95, 157, 231, 0.48);
 }
 
 /* 🔥 ZÖLD ÁTTETSZŐ DROPDOWN */
 .dropdown {
-    position: absolute;
-    top: 90px;
-    width: 220px;
+  position: absolute;
+  top: 90px;
+  width: 220px;
 
-    /* 🔥 EZ A LÉNYEG */
-    background: rgba(0, 100, 0, 0.25);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+  /* 🔥 EZ A LÉNYEG */
+  background: rgba(0, 100, 0, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
-    border: 1px solid rgba(0, 255, 100, 0.3);
-    border-radius: 12px;
-    padding: 12px;
+  border: 1px solid rgba(0, 255, 100, 0.3);
+  border-radius: 12px;
+  padding: 12px;
 
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* inputok a dropdownban */
 .dropdown input {
-    background: rgba(255,255,255,0.8);
-    border: none;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
 }
 
 /* gombok a dropdownban */
 .dropdown button {
-    background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 /* pozíciók */
-#loginMenu { left: 20px; }
-#registerMenu { right: 20px; }
+#loginMenu {
+  left: 20px;
+}
+#registerMenu {
+  right: 20px;
+}
 
-.hidden { display: none; }
+.hidden {
+  display: none;
+}
 
 /* KONTÉNER */
 .container {
-    max-width: 920px;
-    margin: 24px auto;
-    padding: 0 16px;
+  max-width: 920px;
+  margin: 24px auto;
+  padding: 0 16px;
 }
 
 /* UI */
 .card {
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 16px;
-    margin: 12px 0;
-    background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0;
+  background: rgba(0, 0, 0, 0.3);
 }
 
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
-    box-sizing: border-box;
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  box-sizing: border-box;
 }
 
 /* nem navbar gombok */
-button:not(.auth-btn) {
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
-    background: #eee;
-    border: 1px solid #ccc;
+button:not(.auth-btn):not(.download-button) {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: #eee;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .muted {
-    color: #666;
-    font-size: 14px;
+  color: #666;
+  font-size: 14px;
 }
 
 .reviews {
-    display: grid;
-    gap: 10px;
+  display: grid;
+  gap: 10px;
 }
 
 .review {
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 12px;
 }
 
 .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 code {
-    background: #f6f6f6;
-    padding: 2px 6px;
-    border-radius: 6px;
+  background: #f6f6f6;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.dropdown h3 {
+  text-align: center;
+  margin-top: 0;
+  color: white;
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  color: white;
+}
+
+.download-button {
+text-align: center;
+  display: block;
+  width: fit-content;
+  margin-left: 350px;
+  position: relative;
+  font-size: 17px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1em 2.5em;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 6em;
+  transition: all 0.2s;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  color: black;
+  background-color: white;
+}
+
+.download-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.download-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.download-button::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.download-button::after {
+  background-color: #fff;
+}
+
+.download-button:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.card input,
+.card textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  box-sizing: border-box;
+
+  /* 🔥 ÚJ STÍLUS */
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+
+  backdrop-filter: blur(4px);
+}
+
+/* placeholder szín */
+.card input::placeholder,
+.card textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* fókusz (amikor beleklikkelsz) */
+.card input:focus,
+.card textarea:focus {
+  outline: none;
+  border: 1px solid rgba(0, 255, 100, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#rating {
+  width: 8%;
+}
+
+#reportTitle {
+  width: 30%;
+}
+
+#btnRefresh {
+    width: fit-content;
+    margin-left: 430px;
+    border: white dotted 1px;
+    border-radius: 20px;
+}
+
+#btnLogout {
+    width: fit-content;
+    margin-left: 400px;
+}
+
+/* 🔥 SIMA GOMBOK (nem fancy gombok) */
+button:not(.auth-btn):not(.download-button):not(.sima) {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 3px; /* 🔥 kis lekerekítés */
+
+  color: white;
+
+  backdrop-filter: blur(4px);
+
+  transition: all 0.25s ease;
+}
+
+/* 🔥 HOVER GLOW */
+button:not(.auth-btn):not(.download-button):not(.sima):hover {
+  background: rgba(255, 255, 255, 0.25);
+
+  box-shadow:
+    0 0 6px rgba(0, 255, 100, 0.4),
+    0 0 12px rgba(0, 255, 100, 0.2);
+
+  transform: translateY(-1px);
+}
+
+/* 🔥 KATTINTÁS */
+button:not(.auth-btn):not(.download-button):not(.sima):active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
+
+/* 🔥 SLIDESHOW */
+.slideshow {
+  margin-top: 25px;
+  width: 100%;
+  max-width: 650px;
+  height: 320px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+/* képek */
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* aktív */
+.slide.active {
+  opacity: 1;
+}
+
+/* 🔥 FIX DOWNLOAD BUTTON KÖZÉPRE */
+.download-button {
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
 }
