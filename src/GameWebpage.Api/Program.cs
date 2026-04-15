@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
-
+    
 // Db
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {

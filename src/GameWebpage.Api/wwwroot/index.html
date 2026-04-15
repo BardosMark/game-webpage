@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="img" href="Képek/Icon.png">
+    <link rel="icon" type="img" href="Képek/Icon.png" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Insomnia</title>
   </head>
@@ -17,14 +17,14 @@
 
       <button id="toggleRegister" class="auth-btn">Register</button>
 
-      <div id="loginMenu" class="dropdown hidden">
+      <div id="loginMenu" class="dropdown">
         <h3>Login</h3>
         <input id="logUser" placeholder="username" />
         <input id="logPass" placeholder="password" type="password" />
         <button id="btnLogin">Bejelentkezés</button>
       </div>
 
-      <div id="registerMenu" class="dropdown hidden">
+      <div id="registerMenu" class="dropdown">
         <h3>Register</h3>
         <input id="regUser" placeholder="username" />
         <input id="regPass" placeholder="password (min 6)" type="password" />
@@ -41,30 +41,39 @@
           lényege, más open world rpg-khez hasonlóan az, hogy felfedezd a pályát
           kedved szerint, erősödj, szintet lépj, harcolj, gyűjtögess és közben
           megismerkedj a játék történetével. A játék jelenleg alpha verzióban
-          van, ezért minden vélemény és bug bejelentése segítik, hogy egy nap amikor a játék
-          végleges verziója megjelenik, egy olyan játékélményben lehessen része
-          a játékosoknak ami bugoktól mentes és örök emlék marad. Légy te is egy
-          a tesztelők közül! Töltsd le a játékot most, és játsz ingyen!
+          van, ezért minden vélemény és bug bejelentése segítik, hogy egy nap
+          amikor a játék végleges verziója megjelenik, egy olyan játékélményben
+          lehessen része a játékosoknak ami bugoktól mentes és örök emlék marad.
+          Légy te is egy a tesztelők közül! Töltsd le a játékot most, és játsz
+          ingyen!
         </h2>
+
         <button class="download-button">Letöltés↓📂</button>
-          <div class="slideshow">
-            <img src="Képek/Kep1.png" class="slide active">
-            <img src="Képek/Kep2.png" class="slide">
-            <img src="Képek/Kep3.png" class="slide">
-            <img src="Képek/Kep4.png" class="slide">
-            <img src="Képek/Kep5.png" class="slide">
-          </div>
-        </button>
+
+        <div class="slideshow">
+          <img src="Képek/Kep1.png" class="slide active" />
+          <img src="Képek/Kep2.png" class="slide" />
+          <img src="Képek/Kep3.png" class="slide" />
+          <img src="Képek/Kep4.png" class="slide" />
+          <img src="Képek/Kep5.png" class="slide" />
+        </div>
+
         <h1>Értékeld a játékot!</h1>
-        <input placeholder="1-5★" id="rating" type="number" min="1" max="5" />
-        <textarea placeholder="Írd le a véleményed!" id="reviewMessage"></textarea>
-        <button id="btnSendReview" >Review küldése</button>
+        <input id="rating" placeholder="1-5★" type="number" min="1" max="5" />
+        <textarea
+          id="reviewMessage"
+          placeholder="Írd le a véleményed!"
+        ></textarea>
+        <button id="btnSendReview">Review küldése</button>
         <pre id="reviewMsg"></pre>
 
         <h1>Talkálkoztál bugokkal?</h1>
-        <input placeholder="Bug neve" id="reportTitle" />
-        <textarea placeholder="Írd le mi történt pontosan!" id="reportMessage"></textarea>
-        <button id="btnSendReport" >Report küldése</button>
+        <input id="reportTitle" placeholder="Bug neve" />
+        <textarea
+          id="reportMessage"
+          placeholder="Írd le mi történt pontosan"
+        ></textarea>
+        <button id="btnSendReport">Report küldése</button>
         <pre id="reportMsg"></pre>
 
         <button id="btnRefresh">⟳</button>
@@ -75,6 +84,8 @@
         <pre id="authMsg"></pre>
       </div>
     </div>
+
+    <div id="cursor" class="custom-cursor"></div>
 
     <script src="/js/app.js"></script>
   </body>

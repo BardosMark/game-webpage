@@ -2,260 +2,263 @@
 
 const tokenKey = "gw_token";
 
-
-const backgrounds = [
-    "Képek/hatter.png",
-    "Képek/hatter2.png"
-];
+const backgrounds = ["Képek/hatter.png", "Képek/hatter2.png"];
 
 let currentBgIndex = 0;
 
-
 function setRandomBackground() {
-    currentBgIndex = Math.floor(Math.random() * backgrounds.length);
-    applyBackground(backgrounds[currentBgIndex]);
+  currentBgIndex = Math.floor(Math.random() * backgrounds.length);
+  applyBackground(backgrounds[currentBgIndex]);
 }
-
 
 function applyBackground(bg) {
-    document.body.style.backgroundImage = `url('${bg}')`;
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundRepeat = "no-repeat";
+  document.body.style.backgroundImage = `url('${bg}')`;
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundPosition = "center";
+  document.body.style.backgroundRepeat = "no-repeat";
 
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-    document.body.style.backgroundBlendMode = "darken";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  document.body.style.backgroundBlendMode = "darken";
 }
-
 
 function startBackgroundRotation() {
-    setInterval(() => {
-        currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
-        applyBackground(backgrounds[currentBgIndex]);
-    }, 40000); // 40 másodperc
+  setInterval(() => {
+    currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
+    applyBackground(backgrounds[currentBgIndex]);
+  }, 40000);
 }
 
-
 function getToken() {
-    return localStorage.getItem(tokenKey);
+  return localStorage.getItem(tokenKey);
 }
 
 function setToken(token) {
-    if (token)
-        localStorage.setItem(tokenKey, token);
-    else
-        localStorage.removeItem(tokenKey);
-    renderTokenStatus();
+  if (token) localStorage.setItem(tokenKey, token);
+  else localStorage.removeItem(tokenKey);
+  renderTokenStatus();
 }
 
 function renderTokenStatus() {
-    const el = document.getElementById("tokenStatus");
-    const t = getToken();
-    el.textContent = t ? "van (localStorage)" : "nincs";
+  const el = document.getElementById("tokenStatus");
+  const t = getToken();
+  el.textContent = t ? "van (localStorage)" : "nincs";
 }
-
 
 async function api(path, options = {}) {
-    const headers = new Headers(options.headers || {});
-    headers.set("Content-Type", "application/json");
+  const headers = new Headers(options.headers || {});
+  headers.set("Content-Type", "application/json");
 
-    const t = getToken();
-    if (t)
-        headers.set("Authorization", `Bearer ${t}`);
+  const t = getToken();
+  if (t) headers.set("Authorization", `Bearer ${t}`);
 
-    const res = await fetch(path, { ...options, headers });
-    const text = await res.text();
-    const data = text ? JSON.parse(text) : null;
+  const res = await fetch(path, { ...options, headers });
+  const text = await res.text();
+  const data = text ? JSON.parse(text) : null;
 
-    if (!res.ok) {
-        throw new Error(data?.error || `HTTP ${res.status}`);
-    }
+  if (!res.ok) {
+    throw new Error(data?.error || `HTTP ${res.status}`);
+  }
 
-    return data;
+  return data;
 }
 
-
 function qs(id) {
-    return document.getElementById(id);
+  return document.getElementById(id);
 }
 
 function setMsg(id, msg) {
-    document.getElementById(id).textContent = msg;
+  document.getElementById(id).textContent = msg;
 }
 
 function escapeHtml(s) {
-    return s.replace(/[&<>"']/g, c => ({
+  return s.replace(
+    /[&<>"']/g,
+    (c) =>
+      ({
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
         '"': "&quot;",
-        "'": "&#39;"
-    }[c]));
+        "'": "&#39;",
+      })[c],
+  );
 }
 
-
 async function refreshReviews() {
-    const container = qs("reviews");
-    container.innerHTML = "Töltés...";
+  const container = qs("reviews");
+  container.innerHTML = "Töltés...";
 
-    try {
-        const items = await api("/api/reviews");
+  try {
+    const items = await api("/api/reviews");
 
-        if (!items.length) {
-            container.innerHTML = "<div class='muted'>Nincs review</div>";
-            return;
-        }
+    if (!items.length) {
+      container.innerHTML = "<div class='muted'>Nincs review</div>";
+      return;
+    }
 
-        container.innerHTML = "";
+    container.innerHTML = "";
 
-        for (const r of items) {
-            const div = document.createElement("div");
-            div.className = "review";
+    for (const r of items) {
+      const div = document.createElement("div");
+      div.className = "review";
 
-            div.innerHTML = `
+      div.innerHTML = `
                 <b>${escapeHtml(r.username)}</b> ⭐ ${r.rating}
                 <div class="muted">${new Date(r.createdAt).toLocaleString()}</div>
                 <div>${escapeHtml(r.message)}</div>
             `;
 
-            container.appendChild(div);
-        }
-    } catch (e) {
-        container.innerHTML = "Hiba: " + e.message;
+      container.appendChild(div);
     }
+  } catch (e) {
+    container.innerHTML = "Hiba: " + e.message;
+  }
 }
-
 
 function startSlideshow() {
-    const slides = document.querySelectorAll(".slide");
-    let index = 0;
+  const slides = document.querySelectorAll(".slide");
+  let index = 0;
 
-    setInterval(() => {
-        slides[index].classList.remove("active");
+  setInterval(() => {
+    slides[index].classList.remove("active");
 
-        index++;
-        if (index >= slides.length) {
-            index = 0; // 🔥 újraindul
-        }
+    index++;
+    if (index >= slides.length) {
+      index = 0;
+    }
 
-        slides[index].classList.add("active");
-    }, 4000);
+    slides[index].classList.add("active");
+  }, 4000);
 }
 
-
 function wireUi() {
+  setRandomBackground();
+  startBackgroundRotation();
 
-    /* 🔥 HÁTTÉR */
-    setRandomBackground();
-    startBackgroundRotation();
+  startSlideshow();
 
-    startSlideshow();
+  renderTokenStatus();
 
-    renderTokenStatus();
+  const regMenu = qs("registerMenu");
+  const logMenu = qs("loginMenu");
 
-    const regMenu = qs("registerMenu");
-    const logMenu = qs("loginMenu");
+  const regBtn = qs("toggleRegister");
+  const logBtn = qs("toggleLogin");
 
-    const regBtn = qs("toggleRegister");
-    const logBtn = qs("toggleLogin");
+  regBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    regMenu.classList.toggle("open");
+    logMenu.classList.remove("open");
+  });
 
-    regBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        regMenu.classList.toggle("hidden");
-        logMenu.classList.add("hidden");
+  logBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    logMenu.classList.toggle("open");
+    regMenu.classList.remove("open");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (
+      !regMenu.contains(e.target) &&
+      !logMenu.contains(e.target) &&
+      !regBtn.contains(e.target) &&
+      !logBtn.contains(e.target)
+    ) {
+      regMenu.classList.remove("open");
+      logMenu.classList.remove("open");
+    }
+  });
+
+  const cursor = qs("cursor");
+
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
+
+  document.querySelectorAll("button, input, textarea, a").forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursor.classList.add("active");
     });
 
-    logBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        logMenu.classList.toggle("hidden");
-        regMenu.classList.add("hidden");
+    el.addEventListener("mouseleave", () => {
+      cursor.classList.remove("active");
     });
+  });
 
-    document.addEventListener("click", (e) => {
-        if (
-            !regMenu.contains(e.target) &&
-            !logMenu.contains(e.target) &&
-            !regBtn.contains(e.target) &&
-            !logBtn.contains(e.target)
-        ) {
-            regMenu.classList.add("hidden");
-            logMenu.classList.add("hidden");
-        }
-    });
+  qs("btnRegister").addEventListener("click", async () => {
+    try {
+      await api("/api/auth/register", {
+        method: "POST",
+        body: JSON.stringify({
+          username: qs("regUser").value,
+          password: qs("regPass").value,
+        }),
+      });
+      setMsg("authMsg", "Sikeres regisztráció");
+    } catch (e) {
+      setMsg("authMsg", e.message);
+    }
+  });
 
-    qs("btnRegister").addEventListener("click", async () => {
-        try {
-            await api("/api/auth/register", {
-                method: "POST",
-                body: JSON.stringify({
-                    username: qs("regUser").value,
-                    password: qs("regPass").value
-                })
-            });
-            setMsg("authMsg", "Sikeres regisztráció");
-        } catch (e) {
-            setMsg("authMsg", e.message);
-        }
-    });
+  qs("btnLogin").addEventListener("click", async () => {
+    try {
+      const r = await api("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({
+          username: qs("logUser").value,
+          password: qs("logPass").value,
+        }),
+      });
 
-    qs("btnLogin").addEventListener("click", async () => {
-        try {
-            const r = await api("/api/auth/login", {
-                method: "POST",
-                body: JSON.stringify({
-                    username: qs("logUser").value,
-                    password: qs("logPass").value
-                })
-            });
+      setToken(r.token);
+      setMsg("authMsg", "Belépve");
+    } catch (e) {
+      setMsg("authMsg", e.message);
+    }
+  });
 
-            setToken(r.token);
-            setMsg("authMsg", "Belépve");
-        } catch (e) {
-            setMsg("authMsg", e.message);
-        }
-    });
+  qs("btnLogout").addEventListener("click", () => {
+    setToken(null);
+    setMsg("authMsg", "Kijelentkezve");
+  });
 
-    qs("btnLogout").addEventListener("click", () => {
-        setToken(null);
-        setMsg("authMsg", "Kijelentkezve");
-    });
+  qs("btnSendReview").addEventListener("click", async () => {
+    try {
+      await api("/api/reviews", {
+        method: "POST",
+        body: JSON.stringify({
+          rating: Number(qs("rating").value),
+          message: qs("reviewMessage").value,
+        }),
+      });
 
-    qs("btnSendReview").addEventListener("click", async () => {
-        try {
-            await api("/api/reviews", {
-                method: "POST",
-                body: JSON.stringify({
-                    rating: Number(qs("rating").value),
-                    message: qs("reviewMessage").value
-                })
-            });
+      setMsg("reviewMsg", "Mentve");
+      refreshReviews();
+    } catch (e) {
+      setMsg("reviewMsg", e.message);
+    }
+  });
 
-            setMsg("reviewMsg", "Mentve");
-            refreshReviews();
-        } catch (e) {
-            setMsg("reviewMsg", e.message);
-        }
-    });
+  qs("btnSendReport").addEventListener("click", async () => {
+    try {
+      await api("/api/reports", {
+        method: "POST",
+        body: JSON.stringify({
+          title: qs("reportTitle").value,
+          message: qs("reportMessage").value,
+        }),
+      });
 
-    qs("btnSendReport").addEventListener("click", async () => {
-        try {
-            await api("/api/reports", {
-                method: "POST",
-                body: JSON.stringify({
-                    title: qs("reportTitle").value,
-                    message: qs("reportMessage").value
-                })
-            });
+      setMsg("reportMsg", "Mentve");
+    } catch (e) {
+      setMsg("reportMsg", e.message);
+    }
+  });
 
-            setMsg("reportMsg", "Mentve");
-        } catch (e) {
-            setMsg("reportMsg", e.message);
-        }
-    });
+  qs("btnRefresh").addEventListener("click", refreshReviews);
 
-    qs("btnRefresh").addEventListener("click", refreshReviews);
-
-    refreshReviews();
+  refreshReviews();
 }
 
 document.addEventListener("DOMContentLoaded", wireUi);

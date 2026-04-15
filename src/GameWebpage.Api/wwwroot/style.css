@@ -1,15 +1,40 @@
-﻿
+﻿* {
+  cursor: none !important;
+}
+
 body {
   margin: 0;
   font-family: system-ui, Arial, sans-serif;
-  transition: background-image 1.5s ease-in-out,
-              background-color 1.5s ease-in-out;
-           
+  transition:
+    background-image 1.5s ease-in-out,
+    background-color 1.5s ease-in-out;
+  cursor: none; /* 🔥 alap cursor kikapcsolva */
 }
 
+/* 🔥 CUSTOM CURSOR */
+.custom-cursor {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
 
+  background: url("Képek/cursorr.png") no-repeat center;
+  background-size: contain;
+
+  transition: transform 0.08s linear;
+}
+
+.custom-cursor.active {
+  transform: translate(-50%, -50%) scale(1.19);
+}
+
+/* 🔥 FIX NAVBAR */
 .auth-bar {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 90px;
 
@@ -22,8 +47,10 @@ body {
   box-sizing: border-box;
   border: 1px rgba(0, 38, 0, 0.2) dotted;
   border-radius: 5px;
-}
 
+  backdrop-filter: blur(12px);
+  z-index: 999;
+}
 
 .nav-logo {
   position: absolute;
@@ -38,7 +65,6 @@ body {
     transform 0.3s ease;
 }
 
-
 .nav-logo img:hover {
   filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.6))
     drop-shadow(0 0 20px rgba(255, 0, 0, 0.6))
@@ -46,7 +72,6 @@ body {
 
   transform: scale(1.05);
 }
-
 
 .auth-btn {
   display: flex;
@@ -75,13 +100,12 @@ body {
     2px 1px 8px rgba(95, 157, 231, 0.48);
 }
 
-
+/* 🔥 ANIMÁLT DROPDOWN */
 .dropdown {
   position: absolute;
   top: 90px;
   width: 220px;
 
-  /* 🔥 EZ A LÉNYEG */
   background: rgba(0, 100, 0, 0.25);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -91,38 +115,43 @@ body {
   padding: 12px;
 
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+  opacity: 0;
+  transform: translateY(-15px) scale(0.95);
+  pointer-events: none;
+
+  transition: all 0.35s ease;
 }
 
+.dropdown.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
 
 .dropdown input {
   background: rgba(255, 255, 255, 0.8);
   border: none;
 }
 
-
 .dropdown button {
   background: rgba(255, 255, 255, 0.9);
 }
 
-
 #loginMenu {
   left: 20px;
 }
+
 #registerMenu {
   right: 20px;
 }
 
-.hidden {
-  display: none;
-}
-
-
+/* 🔥 FONTOS: navbar miatt lejjebb tolás */
 .container {
   max-width: 920px;
-  margin: 24px auto;
+  margin: 120px auto 24px auto;
   padding: 0 16px;
 }
-
 
 .card {
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -140,17 +169,16 @@ textarea {
   box-sizing: border-box;
 }
 
-
 button:not(.auth-btn):not(.download-button) {
   width: 100%;
   padding: 10px;
   margin-top: 8px;
   background: #eee;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 button {
-  cursor: pointer;
+  cursor: none; /* 🔥 NE jelenjen meg default pointer */
 }
 
 .muted {
@@ -196,7 +224,7 @@ h2 {
 }
 
 .download-button {
-text-align: center;
+  text-align: center;
   display: block;
   width: fit-content;
   margin-left: 350px;
@@ -206,7 +234,7 @@ text-align: center;
   text-decoration: none;
   padding: 1em 2.5em;
   display: inline-block;
-  cursor: pointer;
+  cursor: none;
   border-radius: 6em;
   transition: all 0.2s;
   border: none;
@@ -250,27 +278,17 @@ text-align: center;
 
 .card input,
 .card textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 8px;
-  box-sizing: border-box;
-
- 
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-
   background: rgba(255, 255, 255, 0.1);
   color: white;
-
   backdrop-filter: blur(4px);
 }
-
 
 .card input::placeholder,
 .card textarea::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
-
 
 .card input:focus,
 .card textarea:focus {
@@ -288,90 +306,78 @@ text-align: center;
 }
 
 #btnRefresh {
-    width: fit-content;
-    margin-left: 430px;
-    border: white dotted 1px;
-    border-radius: 20px;
+  width: fit-content;
+  margin-left: 430px;
+  margin-bottom: 100px;
+  border: white dotted 1px;
+  border-radius: 20px;
 }
 
 #btnLogout {
-    width: fit-content;
-    margin-left: 400px;
+  width: fit-content;
+  margin-left: 400px;
 }
 
-
 button:not(.auth-btn):not(.download-button):not(.sima) {
-  width: 100%;
-  padding: 10px;
-  margin-top: 8px;
-
   background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
-  border-radius: 3px; /* 🔥 kis lekerekítés */
-
+  border-radius: 3px;
   color: white;
-
   backdrop-filter: blur(4px);
-
   transition: all 0.25s ease;
 }
 
-
 button:not(.auth-btn):not(.download-button):not(.sima):hover {
   background: rgba(255, 255, 255, 0.25);
-
   box-shadow:
     0 0 6px rgba(0, 255, 100, 0.4),
     0 0 12px rgba(0, 255, 100, 0.2);
-
   transform: translateY(-1px);
 }
-
 
 button:not(.auth-btn):not(.download-button):not(.sima):active {
   transform: scale(0.97);
   box-shadow: none;
 }
 
-
 .slideshow {
   margin-top: 25px;
   width: 100%;
   max-width: 650px;
   height: 320px;
-
   margin-left: auto;
   margin-right: auto;
-
   position: relative;
   overflow: hidden;
-
   border-radius: 12px;
-
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
-
 
 .slide {
   position: absolute;
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
-
 
 .slide.active {
   opacity: 1;
 }
 
-
 .download-button {
   display: block;
   width: fit-content;
   margin: 20px auto;
+}
+
+#review {
+  color: white;
+}
+
+button,
+input,
+textarea,
+a {
+  cursor: none !important;
 }
