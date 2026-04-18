@@ -11,7 +11,6 @@ body {
   cursor: none; /* 🔥 alap cursor kikapcsolva */
 }
 
-/* 🔥 CUSTOM CURSOR */
 .custom-cursor {
   position: fixed;
   width: 40px;
@@ -30,7 +29,6 @@ body {
   transform: translate(-50%, -50%) scale(1.19);
 }
 
-/* 🔥 FIX NAVBAR */
 .auth-bar {
   position: fixed;
   top: 0;
@@ -100,7 +98,6 @@ body {
     2px 1px 8px rgba(95, 157, 231, 0.48);
 }
 
-/* 🔥 ANIMÁLT DROPDOWN */
 .dropdown {
   position: absolute;
   top: 90px;
@@ -146,7 +143,7 @@ body {
   right: 20px;
 }
 
-/* 🔥 FONTOS: navbar miatt lejjebb tolás */
+
 .container {
   max-width: 920px;
   margin: 120px auto 24px auto;
@@ -178,7 +175,7 @@ button:not(.auth-btn):not(.download-button) {
 }
 
 button {
-  cursor: none; /* 🔥 NE jelenjen meg default pointer */
+  cursor: none; 
 }
 
 .muted {
@@ -223,55 +220,61 @@ h2 {
   color: white;
 }
 
-.download-button {
+.download-link {
   text-align: center;
-  display: block;
+  display: inline-block;
   width: fit-content;
   margin-left: 350px;
+
   position: relative;
   font-size: 17px;
   text-transform: uppercase;
   text-decoration: none;
+
   padding: 1em 2.5em;
-  display: inline-block;
-  cursor: none;
   border-radius: 6em;
+
   transition: all 0.2s;
   border: none;
   font-family: inherit;
   font-weight: 500;
+
   color: black;
   background-color: white;
+
+  cursor: none;
 }
 
-.download-button:hover {
+
+.download-link:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.download-button:active {
+
+.download-link:active {
   transform: translateY(-1px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.download-button::after {
+
+.download-link::after {
   content: "";
   display: inline-block;
   height: 100%;
   width: 100%;
   border-radius: 100px;
+
   position: absolute;
   top: 0;
   left: 0;
   z-index: -1;
-  transition: all 0.4s;
-}
 
-.download-button::after {
+  transition: all 0.4s;
   background-color: #fff;
 }
 
-.download-button:hover::after {
+.download-link:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
 }
@@ -339,6 +342,11 @@ button:not(.auth-btn):not(.download-button):not(.sima):active {
   box-shadow: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .slideshow {
   margin-top: 25px;
   width: 100%;
@@ -380,4 +388,192 @@ input,
 textarea,
 a {
   cursor: none !important;
+}
+
+@media (max-width: 768px) {
+
+  .auth-bar {
+    height: 70px;
+    padding: 0 10px;
+  }
+
+  .nav-logo img {
+    height: 40px;
+  }
+
+  .auth-btn {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+
+  .dropdown {
+    width: 90%;
+    left: 5% !important;
+    right: auto !important;
+  }
+
+ 
+
+  
+  .container {
+    margin-top: 100px;
+    padding: 0 10px;
+  }
+
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 14px;
+  }
+
+ 
+  .slideshow {
+    height: 200px;
+  }
+
+ 
+
+  .download-button {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block;
+  }
+
+  #btnRefresh {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #btnLogout {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* INPUTOK */
+  #rating {
+    width: 100% !important;
+  }
+
+  #reportTitle {
+    width: 100% !important;
+  }
+}
+
+
+@media (max-width: 1200px) {
+
+  .download-button {
+    margin-left: 200px;
+  }
+
+  #btnRefresh {
+    margin-left: 250px;
+  }
+
+  #btnLogout {
+    margin-left: 250px;
+  }
+
+}
+
+
+
+@media (max-width: 992px) {
+
+  .download-button {
+    margin-left: 120px;
+  }
+
+  #btnRefresh {
+    margin-left: 150px;
+  }
+
+  #btnLogout {
+    margin-left: 150px;
+  }
+
+  .nav-logo img {
+    height: 50px;
+  }
+
+}
+
+
+
+@media (max-width: 768px) {
+
+  .auth-bar {
+    height: 70px;
+    padding: 0 10px;
+  }
+
+  .nav-logo img {
+    height: 40px;
+  }
+
+  .auth-btn {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .dropdown {
+    width: 90%;
+    left: 5% !important;
+    right: auto !important;
+  }
+
+  .container {
+    margin-top: 100px;
+    padding: 0 10px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 14px;
+  }
+
+  .slideshow {
+    height: 200px;
+  }
+
+  
+  .download-button,
+  #btnRefresh,
+  #btnLogout {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block;
+  }
+
+  #rating,
+  #reportTitle {
+    width: 100% !important;
+  }
+
+  @media (max-width: 1200px) {
+  .download-link {
+    margin-left: 200px;
+  }
+}
+
+@media (max-width: 992px) {
+  .download-link {
+    margin-left: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .download-link {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block;
+  }
+}
 }
